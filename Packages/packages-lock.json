@@ -2,7 +2,7 @@
   "dependencies": {
     "ai.natml.hub": {
       "version": "1.0.12",
-      "depth": 1,
+      "depth": 2,
       "source": "registry",
       "dependencies": {},
       "url": "https://registry.npmjs.com"
@@ -18,7 +18,7 @@
     },
     "ai.natml.natml": {
       "version": "1.0.17",
-      "depth": 0,
+      "depth": 1,
       "source": "registry",
       "dependencies": {
         "ai.natml.hub": "1.0.12"
@@ -26,13 +26,12 @@
       "url": "https://registry.npmjs.com"
     },
     "ai.natml.vision.meet": {
-      "version": "1.0.2",
+      "version": "file:ai.natml.vision.meet",
       "depth": 0,
-      "source": "registry",
+      "source": "embedded",
       "dependencies": {
         "ai.natml.natml": "1.0.17"
-      },
-      "url": "https://registry.npmjs.com"
+      }
     },
     "com.unity.collab-proxy": {
       "version": "1.15.17",
