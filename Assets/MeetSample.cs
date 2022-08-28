@@ -56,15 +56,8 @@ namespace NatML.Examples {
             // Check that the predictor has been created
             if (predictor == null)
                 return;
-            // Create the input feature
-            var previewTexture = previewTextureOutput.texture;
-            var inputFeature = new MLImageFeature(
-                previewTexture.GetRawTextureData<byte>(),
-                previewTexture.width,
-                previewTexture.height
-            );
             // Predict
-            var matte = predictor.Predict(inputFeature);
+            var matte = predictor.Predict(previewTextureOutput.texture);
             matte.Render(matteImage);
         }
 
