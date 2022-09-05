@@ -13,7 +13,7 @@ Add the following items to your Unity project's `Packages/manifest.json`:
     }
   ],
   "dependencies": {
-    "ai.natml.vision.meet": "1.0.2"
+    "ai.natml.vision.meet": "1.0.3"
   }
 }
 ```
@@ -46,7 +46,7 @@ matte.Render(result);
 ___
 
 ## Requirements
-- Unity 2020.3+
+- Unity 2021.2+
 
 ## Quick Tips
 - Discover more ML models on [NatML Hub](https://hub.natml.ai).

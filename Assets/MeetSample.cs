@@ -12,6 +12,7 @@ namespace NatML.Examples {
     using NatML.Features;
     using NatML.Vision;
 
+    [MLModelDataEmbed("@natml/meet")]
     public class MeetSample : MonoBehaviour {
 
         [Header(@"UI")]

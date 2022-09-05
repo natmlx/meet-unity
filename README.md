@@ -5,12 +5,12 @@
 Human segmentation sample with Meet model from Google MediaPipe.
 
 ## Setup Instructions
-Retrieve your access key from [NatML Hub](https://hub.natml.ai/profile) and add it to your Project Settings. Note that fetching the Meet ML model from NatML Hub and using NatDevice require an active [NatML Cloud](https://www.natml.ai/pricing) subscription:
+Retrieve your access key from [NatML Hub](https://hub.natml.ai/profile) and add it to your Project Settings. Note that using this predictor requires an active [NatML Cloud](https://www.natml.ai/pricing) subscription:
 
 ![project settings](https://github.com/natmlx/NatDevice/raw/main/.media/key.png)
 
 ## Requirements
-- Unity 2020.3+
+- Unity 2021.2+
 - NatDevice 1.2.3+
 
 ## Supported Platforms

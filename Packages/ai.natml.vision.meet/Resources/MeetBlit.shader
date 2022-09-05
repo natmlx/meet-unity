@@ -37,11 +37,7 @@ Shader "Hidden/Meet/Blit" {
 
             fixed4 frag (v2f i) : SV_Target {
                 UNITY_SETUP_STEREO_EYE_INDEX_POST_VERTEX(i);
-                #if UNITY_UV_STARTS_AT_TOP
                 float2 uv = float2(i.texcoord.x, 1.0 - i.texcoord.y);
-                #else
-                float2 uv = i.texcoord;
-                #endif
                 fixed4 color = UNITY_SAMPLE_SCREENSPACE_TEXTURE(_MainTex, uv);
                 return fixed4(color.r, color.r, color.r, 1.0);
             }
