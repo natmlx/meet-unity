@@ -9,10 +9,8 @@ namespace NatML.Examples {
     using UnityEngine.UI;
     using NatML.Devices;
     using NatML.Devices.Outputs;
-    using NatML.Features;
     using NatML.Vision;
 
-    [MLModelDataEmbed("@natml/meet")]
     public class MeetSample : MonoBehaviour {
 
         [Header(@"UI")]
@@ -20,7 +18,7 @@ namespace NatML.Examples {
         public AspectRatioFitter aspectFitter;
 
         private CameraDevice cameraDevice;
-        private TextureOutput previewTextureOutput;
+        private TextureOutput cameraTextureOutput;
         private RenderTexture matteImage;
 
         private MLModel model;
@@ -38,14 +36,14 @@ namespace NatML.Examples {
             cameraDevice = query.current as CameraDevice;
             // Start the camera preview
             cameraDevice.previewResolution = (1280, 720);
-            previewTextureOutput = new TextureOutput();
-            cameraDevice.StartRunning(previewTextureOutput);
+            cameraTextureOutput = new TextureOutput();
+            cameraDevice.StartRunning(cameraTextureOutput);
             // Create matte texture
-            var previewTexture = await previewTextureOutput;
-            matteImage = new RenderTexture(previewTexture.width, previewTexture.height, 0);
+            var cameraTexture = await cameraTextureOutput;
+            matteImage = new RenderTexture(cameraTexture.width, cameraTexture.height, 0);
             // Display matte texture on UI
             rawImage.texture = matteImage;
-            aspectFitter.aspectRatio = (float)previewTexture.width / previewTexture.height;            
+            aspectFitter.aspectRatio = (float)cameraTexture.width / cameraTexture.height;            
             // Create the Meet predictor
             Debug.Log("Fetching model from NatML...");
             var modelData = await MLModelData.FromHub("@natml/meet");
@@ -58,7 +56,7 @@ namespace NatML.Examples {
             if (predictor == null)
                 return;
             // Predict
-            var matte = predictor.Predict(previewTextureOutput.texture);
+            var matte = predictor.Predict(cameraTextureOutput.texture);
             matte.Render(matteImage);
         }
 
