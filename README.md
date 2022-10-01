@@ -1,17 +1,19 @@
-# Meet Sample
+# Meet
 
 ![demo](demo.gif)
 
 Human segmentation sample with Meet model from Google MediaPipe.
 
-## Setup Instructions
-Retrieve your access key from [NatML Hub](https://hub.natml.ai/profile) and add it to your Project Settings. Note that using this predictor requires an active [NatML Cloud](https://www.natml.ai/pricing) subscription:
+## Running the Sample
+Retrieve your access key from [NatML Hub](https://hub.natml.ai/profile) and add it to your Project Settings. Note that running the sample code requires an active [NatML Cloud](https://www.natml.ai/pricing) subscription:
 
 ![project settings](https://github.com/natmlx/NatDevice/raw/main/.media/key.png)
 
+## Using the Predictor in a Different Project
+[See the predictor README for more details](Packages/ai.natml.vision.meet/README.md)
+
 ## Requirements
 - Unity 2021.2+
-- NatDevice 1.2.3+
 
 ## Supported Platforms
 - Android API level 24+

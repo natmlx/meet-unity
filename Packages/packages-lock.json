@@ -2,17 +2,17 @@
   "dependencies": {
     "ai.natml.hub": {
       "version": "1.0.12",
-      "depth": 2,
+      "depth": 1,
       "source": "registry",
       "dependencies": {},
       "url": "https://registry.npmjs.com"
     },
     "ai.natml.natdevice": {
-      "version": "1.2.3",
+      "version": "1.2.4",
       "depth": 0,
       "source": "registry",
       "dependencies": {
-        "ai.natml.hub": "1.0.10"
+        "ai.natml.hub": "1.0.12"
       },
       "url": "https://registry.npmjs.com"
     },

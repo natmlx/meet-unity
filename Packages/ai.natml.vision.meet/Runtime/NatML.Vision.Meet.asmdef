@@ -1,5 +1,5 @@
 {
-    "name": "NatML.Vision.Meet2",
+    "name": "NatML.Vision.Meet",
     "references": [
         "NatML.ML"
     ],
