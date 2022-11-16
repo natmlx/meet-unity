@@ -7,62 +7,45 @@ namespace NatML.Examples {
 
     using UnityEngine;
     using UnityEngine.UI;
-    using NatML.Devices;
-    using NatML.Devices.Outputs;
+    using NatML.VideoKit;
     using NatML.Vision;
 
     public class MeetSample : MonoBehaviour {
+
+        [Header(@"Camera Manager")]
+        public VideoKitCameraManager cameraManager;
 
         [Header(@"UI")]
         public RawImage rawImage;
         public AspectRatioFitter aspectFitter;
 
-        private CameraDevice cameraDevice;
-        private TextureOutput cameraTextureOutput;
-        private RenderTexture matteImage;
-
         private MLModel model;
         private MeetPredictor predictor;
+        private RenderTexture matteTexture;
 
-        async void Start () {
-            // Request camera permissions
-            var permissionStatus = await MediaDeviceQuery.RequestPermissions<CameraDevice>();
-            if (permissionStatus != PermissionStatus.Authorized) {
-                Debug.LogError(@"User did not grant camera permissions");
-                return;
-            }
-            // Get the default camera device
-            var query = new MediaDeviceQuery(MediaDeviceCriteria.CameraDevice);
-            cameraDevice = query.current as CameraDevice;
-            // Start the camera preview
-            cameraDevice.previewResolution = (1280, 720);
-            cameraTextureOutput = new TextureOutput();
-            cameraDevice.StartRunning(cameraTextureOutput);
-            // Create matte texture
-            var cameraTexture = await cameraTextureOutput;
-            matteImage = new RenderTexture(cameraTexture.width, cameraTexture.height, 0);
-            // Display matte texture on UI
-            rawImage.texture = matteImage;
-            aspectFitter.aspectRatio = (float)cameraTexture.width / cameraTexture.height;            
-            // Create the Meet predictor
+        private async void Start () {
             Debug.Log("Fetching model from NatML...");
+            // Fetch the model data from NatML Hub
             var modelData = await MLModelData.FromHub("@natml/meet");
-            model = modelData.Deserialize();
+            // Create the edge model
+            model = new MLEdgeModel(modelData);
+            // Create the Meet predictor
             predictor = new MeetPredictor(model);
+            // Listen for camera frames
+            cameraManager.OnFrame.AddListener(OnCameraFrame);
         }
 
-        void Update () {
-            // Check that the predictor has been created
-            if (predictor == null)
-                return;
-            // Predict
-            var matte = predictor.Predict(cameraTextureOutput.texture);
-            matte.Render(matteImage);
+        private void OnCameraFrame (CameraFrame frame) {
+            // Predict matte
+            var matte = predictor.Predict(frame);            
+            // Render matte to texture
+            matteTexture = matteTexture ? matteTexture : new RenderTexture(frame.image.width, frame.image.height, 0);
+            matte.Render(matteTexture);
+            // Display matte texture
+            rawImage.texture = matteTexture;
+            aspectFitter.aspectRatio = (float)matteTexture.width / matteTexture.height;   
         }
 
-        void OnDisable () {
-            // Dispose model
-            model?.Dispose();
-        }
+        private void OnDisable () => model?.Dispose(); // Dispose model
     }
 }
