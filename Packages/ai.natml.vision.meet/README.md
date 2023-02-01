@@ -49,7 +49,7 @@ ___
 
 ## Quick Tips
 - Discover more ML models on [NatML Hub](https://hub.natml.ai).
-- See the [NatML documentation](https://docs.natml.ai/unity).
+- See the [NatML documentation](https://docs.natml.ai/natml).
 - Join the [NatML community on Discord](https://natml.ai/community).
 - Contact us at [hi@natml.ai](mailto:hi@natml.ai).
 
