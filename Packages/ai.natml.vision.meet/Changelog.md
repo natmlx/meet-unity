@@ -1,3 +1,6 @@
+## 1.0.4
++ Upgraded to NatML 1.1.
+
 ## 1.0.3
 + Fixed incorrect prediction results on WebGL.
 + Upgraded to NatML 1.0.18.

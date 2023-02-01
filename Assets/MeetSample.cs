@@ -1,6 +1,6 @@
 /*
 *   Meet
-*   Copyright (c) 2022 NatML Inc. All Rights Reserved.
+*   Copyright © 2023 NatML Inc. All Rights Reserved.
 */
 
 namespace NatML.Examples {
@@ -19,20 +19,17 @@ namespace NatML.Examples {
         public RawImage rawImage;
         public AspectRatioFitter aspectFitter;
 
-        private MLModel model;
+        private MLEdgeModel model;
         private MeetPredictor predictor;
         private RenderTexture matteTexture;
 
         private async void Start () {
-            Debug.Log("Fetching model from NatML...");
-            // Fetch the model data from NatML Hub
-            var modelData = await MLModelData.FromHub("@natml/meet");
-            // Create the edge model
-            model = new MLEdgeModel(modelData);
+            // Create the model
+            model = await MLEdgeModel.Create("@natml/meet");
             // Create the Meet predictor
             predictor = new MeetPredictor(model);
             // Listen for camera frames
-            cameraManager.OnFrame.AddListener(OnCameraFrame);
+            cameraManager.OnCameraFrame.AddListener(OnCameraFrame);
         }
 
         private void OnCameraFrame (CameraFrame frame) {
@@ -46,6 +43,11 @@ namespace NatML.Examples {
             aspectFitter.aspectRatio = (float)matteTexture.width / matteTexture.height;   
         }
 
-        private void OnDisable () => model?.Dispose(); // Dispose model
+        private void OnDisable () {
+            // Stop listening for camera frames
+            cameraManager.OnCameraFrame.RemoveListener(OnCameraFrame);
+            // Dispose model
+            model?.Dispose();
+        }
     }
 }

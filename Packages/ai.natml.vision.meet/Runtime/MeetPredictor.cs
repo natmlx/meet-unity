@@ -1,6 +1,6 @@
 /* 
 *   Meet
-*   Copyright (c) 2022 NatML Inc. All Rights Reserved.
+*   Copyright © 2023 NatML Inc. All Rights Reserved.
 */
 
 namespace NatML.Vision {
@@ -19,8 +19,8 @@ namespace NatML.Vision {
         /// <summary>
         /// Create the meet predictor.
         /// </summary>
-        /// <param name="model">Meet ML model.</param>
-        public MeetPredictor (MLModel model) => this.model = model as MLEdgeModel;
+        /// <param name="model">Meet model.</param>
+        public MeetPredictor (MLEdgeModel model) => this.model = model as MLEdgeModel;
 
         /// <summary>
         /// Segment a person in an image.

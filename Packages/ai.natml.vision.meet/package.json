@@ -1,11 +1,11 @@
 {
     "name": "ai.natml.vision.meet",
-    "version": "1.0.3",
+    "version": "1.0.4",
     "displayName": "Meet",
     "description": "MediaPipe Meet Segmentation for human matting in Unity Engine.",
     "unity": "2021.2",
     "dependencies": {
-        "ai.natml.natml": "1.0.19"
+        "ai.natml.natml": "1.1.0"
     },
     "keywords": [
         "natml",
