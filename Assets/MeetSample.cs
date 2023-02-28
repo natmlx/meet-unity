@@ -19,15 +19,12 @@ namespace NatML.Examples {
         public RawImage rawImage;
         public AspectRatioFitter aspectFitter;
 
-        private MLEdgeModel model;
         private MeetPredictor predictor;
         private RenderTexture matteTexture;
 
         private async void Start () {
-            // Create the model
-            model = await MLEdgeModel.Create("@natml/meet");
             // Create the Meet predictor
-            predictor = new MeetPredictor(model);
+            predictor = await MeetPredictor.Create();
             // Listen for camera frames
             cameraManager.OnCameraFrame.AddListener(OnCameraFrame);
         }
@@ -46,8 +43,8 @@ namespace NatML.Examples {
         private void OnDisable () {
             // Stop listening for camera frames
             cameraManager.OnCameraFrame.RemoveListener(OnCameraFrame);
-            // Dispose model
-            model?.Dispose();
+            // Dispose the predictor
+            predictor?.Dispose();
         }
     }
 }
