@@ -13,7 +13,7 @@ Add the following items to your Unity project's `Packages/manifest.json`:
     }
   ],
   "dependencies": {
-    "ai.natml.vision.meet": "1.0.4"
+    "ai.natml.vision.meet": "1.0.6"
   }
 }
 ```
@@ -21,10 +21,8 @@ Add the following items to your Unity project's `Packages/manifest.json`:
 ## Predicting the Matte
 First, create the predictor:
 ```csharp
-// Create the model
-var model = await MLEdgeModel.Create("@natml/meet");
 // Create the Meet predictor
-var predictor = new MeetPredictor(model);
+var predictor = await MeetPredictor.Create();
 ```
 
 Then predict the human matte:
@@ -37,8 +35,9 @@ MeetPredictor.Matte matte = predictor.Predict(image);
 
 Finally, render the segmentation map to a `RenderTexture`:
 ```csharp
-// Visualize the map into a `RenderTexture`
+// Create a destination `RenderTexture`
 var result = new RenderTexture(image.width, image.height, 0);
+// Visualize the map into a `RenderTexture`
 matte.Render(result);
 ```
 
@@ -48,9 +47,9 @@ ___
 - Unity 2021.2+
 
 ## Quick Tips
-- Discover more ML models on [NatML Hub](https://hub.natml.ai).
-- See the [NatML documentation](https://docs.natml.ai/natml).
 - Join the [NatML community on Discord](https://natml.ai/community).
+- Discover more ML models on [NatML Hub](https://hub.natml.ai).
+- See the [NatML documentation](https://docs.natml.ai/unity).
 - Contact us at [hi@natml.ai](mailto:hi@natml.ai).
 
 Thank you very much!

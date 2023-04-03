@@ -18,6 +18,11 @@ namespace NatML.Vision {
 
         #region --Client API--
         /// <summary>
+        /// Predictor tag.
+        /// </summary>
+        public const string Tag = "@natml/meet";
+
+        /// <summary>
         /// Segment a person in an image.
         /// </summary>
         /// <param name="inputs">Input image.</param>
@@ -53,7 +58,7 @@ namespace NatML.Vision {
             MLEdgeModel.Configuration configuration = null,
             string accessKey = null
         ) {
-            var model = await MLEdgeModel.Create("@natml/meet", configuration, accessKey);
+            var model = await MLEdgeModel.Create(Tag, configuration, accessKey);
             var predictor = new MeetPredictor(model);
             return predictor;
         }
