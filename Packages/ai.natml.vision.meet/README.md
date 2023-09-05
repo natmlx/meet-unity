@@ -9,11 +9,11 @@ Add the following items to your Unity project's `Packages/manifest.json`:
     {
       "name": "NatML",
       "url": "https://registry.npmjs.com",
-      "scopes": ["ai.natml"]
+      "scopes": ["ai.natml", "ai.fxn"]
     }
   ],
   "dependencies": {
-    "ai.natml.vision.meet": "1.0.6"
+    "ai.natml.vision.meet": "1.0.7"
   }
 }
 ```
@@ -44,7 +44,7 @@ matte.Render(result);
 ___
 
 ## Requirements
-- Unity 2021.2+
+- Unity 2022.3+
 
 ## Quick Tips
 - Join the [NatML community on Discord](https://natml.ai/community).

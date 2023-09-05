@@ -1,3 +1,6 @@
+## 1.0.7
++ Upgraded to NatML 1.1.15.
+
 ## 1.0.6
 + Added `MeetPredictor.Tag` constant string for enabling edge model embedding.
 

@@ -7,7 +7,7 @@ namespace NatML.Examples {
 
     using UnityEngine;
     using UnityEngine.UI;
-    using NatML.VideoKit;
+    using VideoKit;
     using NatML.Vision;
 
     public class MeetSample : MonoBehaviour {
